@@ -1,37 +1,29 @@
-import React, {useState} from "react";
+import React from "react";
 import Nav from "./Nav";
-import Tiles from "./Tiles"
+import HogInitial from "./HogInitial";
 import hogs from "../porkers_data";
+import Filter from "./Filter"
+import HogDetails from "./HogDetails"
 
 function App() {
-	const [hogsAttributes, sethogsAttributes]= useState(true)
 
-	const hogsDetails = hogs.map((hog)=>(
-		<Tiles 
-		name = {hog.name}
-		image = {hog.image}	/>
-	))
-
-	const hogList = hogs.map((hog)=>{
-		return(
-			<div key= {hog.name}>
-		<p>specialty = {hog.specialty}</p>
-		<p>greased = {hog.greased}</p>
-		<p>weight = {hog.weight}</p>
-		</div>
-		)}
-	)
-
-    function handleAddDetails(hogList){
-sethogsAttributes([...hogsAttributes, hogList])}
+		
 
 	return (
-		<div className="App">
+		<div className = "ui grid container">
 			<Nav />
-			<Tiles hogDetails = {hogsDetails} hogList={hogList} handleAddDetails={handleAddDetails} />
+		
+		<div className = "ui eight wide column">
+			<Filter hogs={hogs}/>
+			<HogInitial hogs={hogs}/>
+		</div>	
 		</div>
+		
 	);
 }
 
+
+
 export default App;
 
+/* <HogTile name={name} image={image} specialty={specialty} weight={weight} greased={greased}/> */
